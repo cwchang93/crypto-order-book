@@ -4,8 +4,8 @@ import ArrowDownIcon from "images/arrowDown.svg";
 
 
 interface LastPriceItemProps {
-    price: number;
-    condition?: 'higher' | 'lower' | 'equal'
+    price: string;
+    condition?: string;
 }
 
 const LastPriceItem = ({ price, condition }: LastPriceItemProps) => {
@@ -14,7 +14,7 @@ const LastPriceItem = ({ price, condition }: LastPriceItemProps) => {
         <StyledLastPrice
             condition={condition}
         >
-            {priceFormatter(price)}
+            {priceFormatter(parseFloat(price))}
             <ArrowDownIcon />
         </StyledLastPrice>)
 

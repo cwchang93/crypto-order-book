@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const StyledTableHeaderContainer = styled.div`
   width:100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
   padding: 5px 10px 0;
   color: #8698aa;
   font-size: 12px;

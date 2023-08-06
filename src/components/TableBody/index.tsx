@@ -4,18 +4,22 @@ import { priceFormatter, sizeFormatter } from 'utils';
 
 
 interface TableBodyProps {
+    type: string;  // ask, bid
     item: string[];
     onAnimationEnd: () => void;
     onSizeAnimationEnd: () => void;
     isSizeIncrease?: boolean;
+    isNewPrice: boolean;
     translateNum: number;
     total: number;
 }
-const TableBody = ({ item, onAnimationEnd, isSizeIncrease, onSizeAnimationEnd, translateNum, total }: TableBodyProps) => {
+const TableBody = ({ type, item, onAnimationEnd, isSizeIncrease, onSizeAnimationEnd, translateNum, total, isNewPrice }: TableBodyProps) => {
     return (
         <StyledTableBody
             onAnimationEnd={onAnimationEnd}
+            $isNewPrice={isNewPrice}
             key={item[0]}
+            $type={type}
         >
             <div
             >
@@ -27,19 +31,12 @@ const TableBody = ({ item, onAnimationEnd, isSizeIncrease, onSizeAnimationEnd, t
             >
                 {sizeFormatter(parseFloat(item[1]))}
             </StyledSizeItem>
-            <div>
-                <StyledTotalWrap $translateNum={translateNum}  >
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: 0,
-                            right: 0,
-                        }}
-                    >
-                        {sizeFormatter(total)}
-                    </div>
-                </StyledTotalWrap>
-            </div>
+            <StyledTotalWrap $translateNum={translateNum} $type={type}  >
+                <div></div>
+                <div>
+                    {sizeFormatter(total)}
+                </div>
+            </StyledTotalWrap>
         </StyledTableBody>
     );
 };
